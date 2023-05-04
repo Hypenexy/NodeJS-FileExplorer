@@ -1,0 +1,11 @@
+{
+  "name": "fileexplorer",
+  "version": "1.0.0",
+  "description": "Different way to explore files, don't use it actually",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Hypenexy",
+  "license": "MIT"
+}
