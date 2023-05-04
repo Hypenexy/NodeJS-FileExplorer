@@ -1,0 +1,95 @@
+*{margin: 0;outline: 0;box-sizing: border-box;font-family: "Roboto", sans-serif;}
+
+@font-face {
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 400;
+    src: url(/assets/fonts/Material-Icons-Outlined.woff2) format('woff2');
+}
+.m-i, x, i:not(notearea i){font-family:'Material Icons';font-weight:normal;font-style:normal;font-size:24px;display:inline-block;line-height:1;text-transform:none;letter-spacing:normal;word-wrap:normal;white-space:nowrap;direction:ltr;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;-moz-osx-font-smoothing:grayscale;font-feature-settings:'liga'}
+
+
+html, body{
+    height: 100%;
+    background: #f5f5fe;
+}
+body.dark{
+    background: #000;
+    color: #eee;
+}
+
+header{
+    padding: 12px;
+    background: #e4edff;
+}
+body.dark header{
+    background: #0e4068;
+}
+header .url i{
+    user-select: none;
+    font-size: 12px;
+}
+header .url a{
+    color: #000;
+    text-decoration: none;
+    padding: 8px;
+}
+body.dark .url a{
+    color: #fff;
+}
+
+.files{
+    height: calc(100% - 43px);
+    overflow: auto;
+    padding: 12px;
+}
+
+.files a{
+    border-radius: 4px;
+    background: #eeeef5;
+    color: #000;
+    padding: 4px;
+    margin: 4px 0;
+    display: block;
+    max-width: 600px;
+}
+body.dark .files a{
+    background: #242432;
+    color: #eeeef5;
+}
+.files a:any-link{
+    color: #25669b;
+}
+.files a i{
+    user-select: none;
+    font-size: 20px;
+    float: left;
+    padding-right: 4px;
+}
+.files a:any-link:hover{
+    background: #dddde6;
+}
+body.dark .files a:any-link:hover{
+    background: #2b2b36;
+}
+.files a:any-link:active{
+    background: #cacad1;
+}
+body.dark .files a:any-link:active{
+    background: #5f5f79;
+}
+.files a p{
+    display: inline-block;
+}
+.files a p:first-child{
+    width: calc(100% - 100px);
+}
+.files a p:last-child{
+    float: right;
+}
+
+.err h1{
+    margin: 40px 0;
+    text-align: center;
+    color: #25669b;
+}
