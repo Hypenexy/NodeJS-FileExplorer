@@ -1,0 +1,30 @@
+*{margin: 0;outline: 0;box-sizing: border-box;}
+
+body{
+    background: #f5f5fe;
+    padding: 12px;
+}
+
+a{
+    border-radius: 4px;
+    background: #eeeef5;
+    color: #000;
+    padding: 4px;
+    margin: 4px 0;
+    display: block;
+    max-width: 400px;
+}
+a:any-link{
+    color: #25669b;
+}
+a img{
+    display: inline-block;
+    height: 14px;
+    padding-right: 4px;
+}
+a:any-link:hover{
+    background: #dddde6;
+}
+a:any-link:active{
+    background: #cacad1;
+}

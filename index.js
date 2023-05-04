@@ -5,15 +5,33 @@ var http, server;
 
 http = require('http');
 server = http.createServer(function (req, res) {
-    console.log('An http user connected');
+    // console.log('An http user connected');
+    if(req.url=="/style.css"){
+        res.writeHead(200, {
+            'Content-Type': 'text/css'
+        });
+        fs.readFile("style.css", (error, content) => {
+            res.write(content);
+            res.end();
+        });
+        return;
+    }
+    if(req.url=="/folder.svg"){
+        res.writeHead(200, {
+            'Content-Type': 'image/svg+xml'
+        });
+        fs.readFile("folder.svg", (error, content) => {
+            res.write(content);
+            res.end();
+        });
+        return;
+    }
     res.writeHead(200, {'Content-Type': 'text/html'});
     if(req.url=="/favicon.ico"){
         res.end();
         return;
     }
-    res.write(`<style>
-        a{display:block;}
-    </style>`);
+    res.write("<link rel='stylesheet' href='/style.css'>")
     req.url = req.url.replaceAll("%20", " ");
     res.write(iterateFolder(req.url));
     res.end();
@@ -23,6 +41,8 @@ server = http.createServer(function (req, res) {
 server.listen(3000, () => {
     console.log('Server listening on *:3000');
 });
+
+// Functionality
 
 function iterateFolder(folder){
     var html = "";
@@ -39,7 +59,9 @@ function iterateFolder(folder){
         }
         html += `<a href="${parentFolder}">..</a>`;
     }
-    fs.readdirSync(folder).forEach(file => {
+    const directoryInfo = fs
+    .readdirSync(folder)
+    .map(file => {
         const path = `${folder}/${file}`;
         var webPath = path;
         if(path.startsWith("//")){
@@ -51,14 +73,22 @@ function iterateFolder(folder){
             isDir = fs.lstatSync(path).isDirectory();
         } catch (error) {}
 
-        if(isDir){
-            html += `<a href='${webPath}'>${file}</a>`;
+        return {
+            name: file,
+            path: path,
+            webPath: webPath,
+            isDir: isDir
+        };
+    })
+    .sort((a, b) => b.isDir - a.isDir || a.name - b.name);
+
+    directoryInfo.forEach(file => {
+        if(file.isDir){
+            html += `<a href='${file.webPath}'><img src='/folder.svg'>${file.name}</a>`;
         }
         else{
-            html += `<a>${file}</a>`;
+            html += `<a>${file.name}</a>`;
         }
     });
     return html;
 }
-
-// Am I supposed to run "npm i"?
